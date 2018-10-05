@@ -21,6 +21,9 @@
 ### Q3:某基于 IEEE 754浮点数格式的16bit浮点数表示，有8个小数位，请给出$±0$, $±1.0$，最大非规范化数，最小非规范化数，最小规范化浮点数，最大规范化浮点数，$±∞$, $NaN$ 的二进制表示(表示形式请参照讲义).
 
 * | First Header  | Second Header |
+
 | ------------- | ------------- |
+
 | Content Cell  | Content Cell  |
+
 | Content Cell  | Content Cell  |
