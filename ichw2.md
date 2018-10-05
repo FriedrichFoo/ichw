@@ -34,5 +34,5 @@
 | $\*\$   | $111\ 1111$ | $non\ zero$   | $NaN$                                                          |
 
 ***
-###### Friedrich Foo *from CCME*
-###### 2018/10/5
+###### <p align="right">Friedrich Foo *from CCME* </p>
+###### <p align="right">2018/10/5 </p>
