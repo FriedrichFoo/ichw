@@ -20,7 +20,14 @@
 
 ### Q3:某基于 IEEE 754浮点数格式的16bit浮点数表示，有8个小数位，请给出$±0$, $±1.0$，最大非规范化数，最小非规范化数，最小规范化浮点数，最大规范化浮点数，$±∞$, $NaN$ 的二进制表示(表示形式请参照讲义).
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Sign | Exp      | Frac      | Value                                                        |
+| ---- | -------- | :-------- | ------------------------------------------------------------ |
+| *    | 000 0000 | 0000 0000 | ±0.0                                                         |
+| 0    | 011 1111 | 0000 0000 | 1.0                                                          |
+| 1    | 011 1111 | 0000 0000 | -1.0                                                         |
+| *    | 000 0000 | 1111 1111 | ±(1-![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png))×![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) |
+| *    | 000 0000 | 0000 0001 | ±![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png)×![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) |
+| *    | 000 0001 | 0000 0000 | ±![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) |
+| *    | 111 1110 | 1111 1111 | ±(2-![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png))×![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png) |
+| *    | 111 1111 | 0000 0000 | ±∞                                                           |
+| *    | 111 1111 | non zero  | NaN                                                          |
