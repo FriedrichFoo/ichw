@@ -25,7 +25,7 @@
 | *    | 000 0000 | 0000 0000 | $±0.0$                                                         |
 | 0    | 011 1111 | 0000 0000 | $1.0$                                                          |
 | 1    | 011 1111 | 0000 0000 | $-1.0$                                                         |
-| *    | 000 0000 | 1111 1111 | $±(1-2^{-8})$|
+| *    | 000 0000 | 1111 1111 | $±(1-2^{-8})\times 2^{-62} $|
 | *    | 000 0000 | 0000 0001 | ±![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png)×![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) |
 | *    | 000 0001 | 0000 0000 | ±![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png) |
 | *    | 111 1110 | 1111 1111 | ±(2-![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png))×![img](file:///C:/Users/hp/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png) |
