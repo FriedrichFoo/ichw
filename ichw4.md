@@ -17,6 +17,6 @@
   6. 根据物理地址从主存中存取必要的信息。
   
 ###### 原理简图
-!(https://raw.githubusercontent.com/FriedrichFoo/ichw/master/v2-f11beecaf740a5322a8eabab224357c4_r.jpg)
+![image](https://raw.githubusercontent.com/FriedrichFoo/ichw/master/v2-f11beecaf740a5322a8eabab224357c4_r.jpg)
 ***
 > 参考资料:<https://blog.csdn.net/qq_28602957/article/details/53729317?utm_source=copy>
