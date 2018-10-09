@@ -27,4 +27,5 @@
    5. $U$盘通常带毒, 打开前要先查毒
    6. 不随便暴露自己的$email$、生日、手机等重要信息
    7. 不以$Administrator$权限操作计算机
- 
+###### <p align="right">Friedrich Foo *from CCME* </p>
+###### <p align="right">2018/10/5 </p>
