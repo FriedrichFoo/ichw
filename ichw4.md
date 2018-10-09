@@ -16,4 +16,4 @@
   5. 从物理组号$a$和组内字节地址$b$得到物理地址；
   6. 根据物理地址从主存中存取必要的信息。
 ***
-！[参考资料]<https://blog.csdn.net/qq_28602957/article/details/53729317?utm_source=copy>
+[参考资料](https://blog.csdn.net/qq_28602957/article/details/53729317?utm_source=copy)
