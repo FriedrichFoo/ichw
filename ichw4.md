@@ -15,5 +15,8 @@
   4. 从地址变换表读出与逻辑组号$a$对应的物理组号$a$；
   5. 从物理组号$a$和组内字节地址$b$得到物理地址；
   6. 根据物理地址从主存中存取必要的信息。
+  
+###### 原理简图
+!(https://raw.githubusercontent.com/FriedrichFoo/ichw/master/v2-f11beecaf740a5322a8eabab224357c4_r.jpg)
 ***
 > 参考资料:<https://blog.csdn.net/qq_28602957/article/details/53729317?utm_source=copy>
