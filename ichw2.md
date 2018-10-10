@@ -1,4 +1,3 @@
- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"> </script>
 
 # 概论作业2 (Sep/18/2018)
 
