@@ -30,3 +30,5 @@
 ***
 ###### <p align="right">Friedrich Foo *from CCME* </p>
 ###### <p align="right">2018/10/5 </p>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
