@@ -23,7 +23,7 @@
  * 如图，有木马、计算机病毒、蠕虫、广告软件、间谍软件、僵尸网络等恶意软件
  
  
- <div align=center><img width="300" height="300" src="https://caodg.github.io/ic/slides/05.network/images/Malware_statics_2011-03-16-en.svg"/></div>
+ <div align=center><img width="400" height="400" src="https://caodg.github.io/ic/slides/05.network/images/Malware_statics_2011-03-16-en.svg"/></div>
 
 
 * 防范方法：
