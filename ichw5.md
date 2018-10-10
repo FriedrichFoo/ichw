@@ -15,7 +15,7 @@
 
 
 
-<div align=center><img width="400" height="400" src="https://caodg.github.io/ic/slides/05.network/images/Tcp-handshake.svg"/></div>
+<div align=center><img width="300" height="300" src="https://caodg.github.io/ic/slides/05.network/images/Tcp-handshake.svg"/></div>
 
 
 ***
