@@ -1,6 +1,5 @@
 # 概论作业5 (Oct/9/2018) #
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ### 北京大学某单位的某台机器IP地址为$162.105.80.160$, 子网掩码为$255.255.255.192$，
 
 1. 该单位的网络号(网络+子网)是多少？
