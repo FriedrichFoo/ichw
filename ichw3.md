@@ -10,10 +10,10 @@
   
 ![image](http://s9.sinaimg.cn/large/6472c4ccgae0b93f864a8&690)
   
-   * EPN经过转换后得到VPN，之后在TLB中查找并得到最终的RPN(Real Page Number)。如果期间发生了TLB Miss，将带来一系列的严重的系统惩罚，我们只讨论TLB Hit的情况，此时将很快获得合适的RPN，并依此得到PA(Physical Address)。
+    * EPN经过转换后得到VPN，之后在TLB中查找并得到最终的RPN(Real Page Number)。如果期间发生了TLB Miss，将带来一系列的严重的系统惩罚，我们只讨论TLB Hit的情况，此时将很快获得合适的RPN，并依此得到PA(Physical Address)。
 
 
-   * 在多数处理器微架构中，Cache由多行多列组成，使用CLN进行索引最终可以得到一个完整的Cache Block。但是在这个Cache Block中的数据并不一定是CPU Core所需要的。因此有必要进行一些检查，将Cache Block中存放的Address与通过虚实地址转换得到的PA进行地址比较(Compare Address)。如果结果相同而且状态位匹配，则表明Cache Hit。此时微架构再经过Byte Select and Align部件最终获得所需要的数据。如果发生Cache Miss，CPU需要使用PA进一步索引主存储器获得最终的数据。
+    * 在多数处理器微架构中，Cache由多行多列组成，使用CLN进行索引最终可以得到一个完整的Cache Block。但是在这个Cache Block中的数据并不一定是CPU Core所需要的。因此有必要进行一些检查，将Cache Block中存放的Address与通过虚实地址转换得到的PA进行地址比较(Compare Address)。如果结果相同而且状态位匹配，则表明Cache Hit。此时微架构再经过Byte Select and Align部件最终获得所需要的数据。如果发生Cache Miss，CPU需要使用PA进一步索引主存储器获得最终的数据。
 
 
 
