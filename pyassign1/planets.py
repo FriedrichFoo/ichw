@@ -54,7 +54,7 @@ def initial():
 def circles():
     """control the rotation of planets
     """
-    for x in range(36000):
+    for x in range(360000):
         for i in [0,1,2,3,4,5]:
             plant[i].goto(a[i]*math.cos(x/v[i])+q[i],b[i]*math.sin(x/v[i]))
 
@@ -62,6 +62,7 @@ def main():
     sunpos()
     initial()
     circles()
+    turtle.done()
 
 if __name__ == "__main__":
     main()
