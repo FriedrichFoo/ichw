@@ -1,13 +1,14 @@
-import turtle
+""" planets.py: Model of Planetary rotation in the solar system (mercury,venus,earth,mars,jupiter,saturn)
+__author__ = 'Friedrich Foo'
+__pkuid__ = '1800011746'
+__email__ = '1800011746@pku.edu.cn'
+"""
 import math
+
+import turtle
 w = turtle.Screen()
 w.bgcolor('black')
 turtle.setworldcoordinates(-500,-500,500,500)
-
-sun = turtle.Turtle()
-sun.shape('circle')
-sun.color('yellow')
-sun.setposition(0,0)
     
 plant = ['mercury','venus','earth','mars','jupiter','saturn']
 color = ['white','green','blue','brown','orange','purple']
@@ -17,6 +18,12 @@ q = [12,0,0,20,0,0]
 b = [50,108,149,210,450,500]
 v = [20,60,90,150,230,400]
 
+def sunpos():
+    sun = turtle.Turtle()
+    sun.shape('circle')
+    sun.color('yellow')
+    sun.setposition(0,0)
+    
 def initial():
     for i in [0,1,2,3,4,5]:
         plant[i] = turtle.Turtle()
@@ -35,6 +42,7 @@ def circles():
             plant[i].goto(a[i]*math.cos(x/v[i])+q[i],b[i]*math.sin(x/v[i]))
 
 def main():
+    sunpos()
     initial()
     circles()
 
