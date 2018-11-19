@@ -3,6 +3,7 @@ __author__ = 'Friedrich Foo'
 __pkuid__ = '1800011746'
 __email__ = '1800011746@pku.edu.cn'
 """
+
 import math
 
 import turtle
@@ -59,6 +60,8 @@ def circles():
             plant[i].goto(a[i]*math.cos(x/v[i])+q[i],b[i]*math.sin(x/v[i]))
 
 def main():
+    """main module
+    """
     sunpos()
     initial()
     circles()
