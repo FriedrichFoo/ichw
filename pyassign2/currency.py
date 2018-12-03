@@ -146,7 +146,7 @@ def test_exchange():
     # Test case 4
     assert (exchange("EUR","GEL",1.5) == 4.3144647387759)
 
-# Part Extra: Testing All function mentioned above
+# Part Extra: Testing All functions mentioned above
 def testALL():
     test_get_to()
     test_has_noerror()
