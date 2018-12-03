@@ -57,6 +57,29 @@ def test_has_noerror():
     result = has_noerror('{"from":"","to":"","success":false,"error":\
                         "Source currency code is invalid."}')
     assert (result == False)
+
+def isfloat(s):
+    """True if string s can be transformed into class float"""
+    try:
+        x = float(s)
+    except TypeError:
+        return False
+    except ValueError:
+        return False
+    except Exception as e:
+        return False
+    else:
+        return True  
+    
+def test_isfloat():
+    # Test case 1
+    assert (isfloat("1.4") == True)
+    # Test case 2
+    assert (isfloat("2") == True)
+    # Test case 3
+    assert (isfloat("string") == False)
+    # Test case 4
+    assert (isfloat("5 strings") == False)
     
 # Part C: Currency Query
 def currency_response(currency_from, currency_to, amount_from):
@@ -72,22 +95,21 @@ def currency_response(currency_from, currency_to, amount_from):
 
 def test_currency_response():
     # Test case 1
-    result = '"from" : "2.5 United States Dollars", "to" :\
-            "2.24075 Euros", "success" : true, "error" : "" '
-    assert currency_response("USD","EUR",2.5),result
+    result1 = ('{ "from" : "2.5 United States Dollars", "to" : \
+"2.1589225 Euros", "success" : true, "error" : "" }')
+    assert (currency_response("USD","EUR",2.5) == result1)
     # Test case 2
-    result = '"from":"","to":"","success":false,"error":\
-            "Source currency code is invalid."'
-    assert currency_response("USA","EUR",2.5),result
+    result2 = '{ "from" : "", "to" : "", "success" : false, "er\
+ror" : "Source currency code is invalid." }'
+    assert (currency_response("USA","EUR",2.5) == result2)
     # Test case 3
-    result = '"from" : "1.6 Venezuelan Bol\u00edvares Fuertes", "to" \
-            : "0.00020905107719705 Uruguayan Pesos", "success" : true, \
-            "error" : ""'
-    assert currency_response("VEF","UYU",1.6),result
+    result3 = '{ "from" : "1.6 Venezuelan Bol\\u00edvares Fuertes", \
+"to" : "0.00020905107719705 Uruguayan Pesos", "success" : true, "error" : "" }'
+    assert (currency_response("VEF","UYU",1.6) == result3)
     # Test case 4
-    result = '"from" : "1.6 Iranian Rials", "to" : "0.0040597211275802 \
-            Icelandic Kr\u00f3nur", "success" : true, "error" : ""'
-    assert currency_response("IRR",'ISK',1.6),result
+    result4 = '{ "from" : "1.6 Iranian Rials", "to" : \
+"0.0040597211275802 Icelandic Kr\\u00f3nur", "success" : true, "error" : "" }'
+    assert (currency_response("IRR","ISK",1.6) == result4)
     
 # Part D: Currency Exchange
 def iscurrency(currency):
@@ -128,11 +150,12 @@ def test_exchange():
 def testALL():
     test_get_to()
     test_has_noerror()
+    test_isfloat()
     test_currency_response()
     test_iscurrency()
     test_exchange()
-    print("All tests passed")
-    
+    print("All tests passed")     
+        
 # Main process
 def main():
     currency_from = input("type down money you want to exchange from: ")
@@ -140,7 +163,7 @@ def main():
     amount_from = input("type down amount of money you want to exchange: ")
     if iscurrency(currency_from) == False or iscurrency(currency_to) == False:
         print("invalid currency type")
-    elif type(amount_from) != "float":
+    elif isfloat(amount_from) == False:
         print("invalid amount type")
     else:
         testALL()
