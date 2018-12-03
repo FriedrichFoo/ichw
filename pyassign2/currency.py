@@ -158,8 +158,8 @@ def testALL():
         
 # Main process
 def main():
-    currency_from = input("type down money you want to exchange from: ")
-    currency_to = input("type down money you want to exchange to: ")
+    currency_from = input("type down currency you want to exchange from: ")
+    currency_to = input("type down currency you want to exchange to: ")
     amount_from = input("type down amount of money you want to exchange: ")
     if iscurrency(currency_from) == False or iscurrency(currency_to) == False:
         print("invalid currency type")
