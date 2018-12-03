@@ -95,8 +95,8 @@ def currency_response(currency_from, currency_to, amount_from):
 
 def test_currency_response():
     # Test case 1
-    result1 = ('{ "from" : "2.5 United States Dollars", "to" : \
-"2.1589225 Euros", "success" : true, "error" : "" }')
+    result1 = '{ "from" : "2.5 United States Dollars", "to" : \
+"2.1589225 Euros", "success" : true, "error" : "" }'
     assert (currency_response("USD","EUR",2.5) == result1)
     # Test case 2
     result2 = '{ "from" : "", "to" : "", "success" : false, "er\
