@@ -7,7 +7,7 @@ __pkuid__ = '1800011746'
 __email__ = '1800011746@pku.edu.cn'
 """
 
-# Part A Breaking Up Strings
+# Part A: Breaking Up Strings
 def before_space(s):
     """Returns: Substring of s; up to, but not including, the first space"""
     m = s.partition(' ')
