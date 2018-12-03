@@ -9,7 +9,9 @@ __email__ = '1800011746@pku.edu.cn'
 
 # Part A: Breaking Up Strings
 def before_space(s):
-    """Returns: Substring of s; up to, but not including, the first space"""
+    """Returns: Substring of s; up to, but not including, the first space
+    Parameter s: the string to slice
+    Precondition: s has at least one space in it"""
     m = s.partition(' ')
     num = m[0]
     return num
@@ -24,7 +26,9 @@ def test_before_space():
 
 # Part B: Processing a JSON String
 def get_to(json):
-    """The TO value in the response to a currency query."""
+    """The TO value in the response to a currency query.
+    Parameter json: a json string to parse
+    Precondition: json is the response to a currency query"""
     m = json.split('"')
     nxtcur = m[7]
     return nxtcur
@@ -39,7 +43,9 @@ def test_get_to():
                    :"Source currency code is invalid."') == '')
     
 def has_noerror(json):
-    """True if the query has no error; False otherwise."""
+    """True if the query has no error; False otherwise.
+    Parameter json: a json string to parse
+    Precondition: json is the response to a currency query"""
     replaceuno = json.replace('false','False')
     replacedos = replaceuno.replace('true','True')
     dic = eval(replacedos)
@@ -83,7 +89,15 @@ def test_isfloat():
     
 # Part C: Currency Query
 def currency_response(currency_from, currency_to, amount_from):
-    """Returns: a JSON string that is a response to a currency query."""
+    """Returns: a JSON string that is a response to a currency query.
+    Parameter currency_from: the currency on hand
+    Precondition: currency_from is a string
+    
+    Parameter currency_to: the currency to convert to
+    Precondition: currency_to is a string
+    
+    Parameter amount_from: amount of currency to convert
+    Precondition: amount_from is a float"""
     from urllib.request import urlopen
     stramt = str(amount_from)
     doc = urlopen('http://cs1110.cs.cornell.edu/2016fa/a1server.php?from='
@@ -113,7 +127,9 @@ ror" : "Source currency code is invalid." }'
     
 # Part D: Currency Exchange
 def iscurrency(currency):
-    """True if currency is a valid (3 letter code for a) currency. """
+    """True if currency is a valid (3 letter code for a) currency.
+    Parameter currency: the currency code to verify
+    Precondition: currency is a string."""
     strout = currency_response("USD", currency, 1)
     boolnum = has_noerror(strout)
     return boolnum
@@ -129,7 +145,22 @@ def test_iscurrency():
     assert (iscurrency("III") == False)
     
 def exchange(currency_from,currency_to,amount_from):
-    """Returns: amount of currency received in the given exchange."""
+    """Returns: amount of currency received in the given exchange.
+
+    In this exchange, the user is changing amount_from money in 
+    currency currency_from to the currency currency_to. The value 
+    returned represents the amount in currency currency_to.
+
+    The value returned has type float.
+
+    Parameter currency_from: the currency on hand
+    Precondition: currency_from is a string for a valid currency code
+
+    Parameter currency_to: the currency to convert to
+    Precondition: currency_to is a string for a valid currency code
+
+    Parameter amount_from: amount of currency to convert
+    Precondition: amount_from is a float"""
     strfin = currency_response(currency_from,currency_to,amount_from)
     nxtcur = get_to(strfin)        
     finalamt1 = before_space(nxtcur)
@@ -148,6 +179,8 @@ def test_exchange():
 
 # Part Extra: Testing All functions mentioned above
 def testALL():
+    """ test all functions mentioned,
+    return "All tests passed" if no assertionerror exists"""
     test_get_to()
     test_has_noerror()
     test_isfloat()
