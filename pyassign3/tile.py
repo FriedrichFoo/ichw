@@ -230,7 +230,7 @@ def main():
                 print(final[i])
             print(len(final))
             numk = tt.numinput('decide on which filling approach you wanna see',\
-                    'ranging from 1-'+str(len(final)),0,minval=1,maxval=len(final))
+                    'ranging from 1-'+str(len(final)),1,minval=1,maxval=len(final))
             num = int(numk)
             draw(final[num-1])
 
