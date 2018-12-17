@@ -234,9 +234,10 @@ def main():
             vis = [[False for j in range(n)] for\
                    i in range(m)]
             search((n * m) // (a * b))
+            print('Follows are all solutions to fill: ')
             for i in range(len(final)):
                 print(final[i])
-            print(len(final))
+            print('There are '+str(len(final))+'ways to fill')
             numk = tt.numinput('Choose an Approach',\
                                'Ranging from 1-'+\
                                str(len(final)),1,minval=1,\
