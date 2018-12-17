@@ -160,7 +160,7 @@ def get_xy(block_id, width=50):
 
 def draw(answer, width=50):
     """Main function to draw one answer from final
-    adjust the screen to make it easy to be seen
+    Adjust the screen to make it easy to be seen
     tt as turtle
     bg as the screen
     """
@@ -205,11 +205,11 @@ def draw(answer, width=50):
 
 # Part C: Main Process to Finish the Assign
 def main():
-    """main function
-    test whether the input is valid
-    error if not
-    then to recursion part to find solution
-    after which to visualize one solution
+    """Main function
+    Test whether the input is valid
+    Error if not
+    Then to recursion part to find solution
+    After which to visualize one solution
     """
     global m, n, a, b, size, vis, idx
     try:
