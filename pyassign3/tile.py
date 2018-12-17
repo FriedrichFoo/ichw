@@ -6,21 +6,22 @@ __author__ = 'Friedrich Foo'
 __pkuid__ = '1800011746'
 __email__ = '1800011746@pku.edu.cn'
 """
+
 # Part initial: Input
 import math
 ans = []
 final = []
-mstr = input('write down the lenth of the tile: ')
-nstr = input('write down the width of the tile: ')
-astr = input('write down one lenth of the brick: ')
-bstr = input('write down another lenth of the brick: ')
+mstr = input('The lenth of the tile: ')
+nstr = input('The width of the tile: ')
+astr = input('One lenth of the brick: ')
+bstr = input('Another lenth of the brick: ')
 
 # Part A: Using Recursion to Give Solutions
 def judge(x0, y0, x1, y1):
-    """function for judging whether bricks from one 
+    """Function for judging whether bricks from one 
     brick with coordinate(x0,y0) to another with 
     coordinate(x1,y1) are filled.
-    return True if not filled.
+    Return True if not filled.
     """
     if x0 < 0 or y0 < 0:
         return False
@@ -33,18 +34,18 @@ def judge(x0, y0, x1, y1):
     return True
 
 def search(step):
-    """main function to find all solutions:
+    """Main function to find all solutions:
     step means the really depth for recursion 
     equaling (m * n) // (a * b)
     """
     if step == 0:
-        """recursion basement
-        return the final answer found
+        """Recursion basement
+        Return the final answer found
         """
         final.append(ans[:])
         return
     for i in range(m):
-        """to find a nearest brick which 
+        """To find a nearest brick which 
         is not filled
         """
         if False in vis[i]:
@@ -53,8 +54,8 @@ def search(step):
 
     # a x b filling
     if judge(x, y, x + a - 1, y + b - 1):
-        """first way to fill
-        recursion part1
+        """First way to fill
+        Recursion part1
         """
         x0, y0, x1, y1 = x, y, x + a - 1, y + b - 1
         now = []
@@ -71,9 +72,9 @@ def search(step):
                 vis[i][j] = False
     # b x a filling
     if judge(x, y, x + b - 1, y + a - 1) and a!=b:
-        """second way to fill
+        """Second way to fill
         while a == b, skip this process
-        recursion part2
+        Recursion part2
         """
         x0, y0, x1, y1 = x, y, x + b - 1, y + a - 1
         now = []
@@ -93,7 +94,7 @@ def search(step):
 import turtle as tt
 
 def draw_line1(x0, y0, x1, y1):
-    """function to draw frame of the tile
+    """Function to draw frame of the tile
     from coordinate(x0, y0) to (x1, y1)
     """
     tt.speed(0)
@@ -108,7 +109,7 @@ def draw_line1(x0, y0, x1, y1):
     tt.penup()
 
 def draw_line2(x0, y0, x1, y1):
-    """function to draw frame of filling bricks
+    """Function to draw frame of filling bricks
     from coordinate(x0, y0) to (x1, y1)
     """
     tt.speed(0)
@@ -123,19 +124,24 @@ def draw_line2(x0, y0, x1, y1):
     tt.penup()
 
 def draw_num(number, x, y):
-    """function to write down a corresponding number in the matrix
-    adjust the size of number to make it easy to be seen
+    """Function to write down a corresponding number 
+    in the matrix
+    Adjust the size of number 
+    to make it easy to be seen
     """
     tt.speed(0)
     tt.penup()
     tt.pencolor('black')
     tt.goto(x, y)
     tt.pendown()
-    tt.write(str(number),align="center",font=("Arial", size, "normal"))
+    tt.write(str(number),align="center",\
+             font=("Arial", size, "normal"))
     tt.penup()
 
 def get_ij(block_id):
-    """function to build connection between block_id to corresponding number
+    """Function to build connection 
+    between block_id to 
+    corresponding number
     """
     for i in range(m):
         for j in range(n):
@@ -143,7 +149,8 @@ def get_ij(block_id):
                 return i, j
 
 def get_xy(block_id, width=50):
-    """function to get the (x, y) to draw frame of bricks
+    """Function to get the (x, y) 
+    to draw frame of bricks
     """
     tt.speed(0)
     i, j = get_ij(block_id)
@@ -152,9 +159,9 @@ def get_xy(block_id, width=50):
     return [x, x + width], [y, y + width]
 
 def draw(answer, width=50):
-    """main function to draw a selected answer from final
+    """Main function to draw one answer from final
     adjust the screen to make it easy to be seen
-    tt as the turtle
+    tt as turtle
     bg as the screen
     """
     tt.speed(0)
@@ -164,7 +171,8 @@ def draw(answer, width=50):
     hx = total_x / 2
     hy = total_y / 2
     sizelenth = max(hx+width,hy+width)
-    bg.setworldcoordinates(-sizelenth,-sizelenth,sizelenth,sizelenth)
+    bg.setworldcoordinates(-sizelenth,-sizelenth,\
+                           sizelenth,sizelenth)
     for i in range(m + 1):
         x0, x1 = i * width, i * width
         y0, y1 = 0, total_y
@@ -210,7 +218,7 @@ def main():
         a = int(astr)
         b = int(bstr)
     except Exception as e:
-        print('invalid input')
+        print('Invalid Input')
         print('Reason:',e)
     else:
         m = int(mstr)
@@ -219,16 +227,20 @@ def main():
         b = int(bstr)
         size = 12 - int(math.log1p(m*n+1))
         if (m * n) % (a * b) != 0:
-            print('invalid lenth')
+            print('Invalid Lenth')
         else:
-            idx = [[m * j + i for j in range(n)] for i in range(m)]
-            vis = [[False for j in range(n)] for i in range(m)]
+            idx = [[m * j + i for j in range(n)] for\
+                   i in range(m)]
+            vis = [[False for j in range(n)] for\
+                   i in range(m)]
             search((n * m) // (a * b))
             for i in range(len(final)):
                 print(final[i])
             print(len(final))
-            numk = tt.numinput('decide on which filling approach you wanna see',\
-                    'ranging from 1-'+str(len(final)),1,minval=1,maxval=len(final))
+            numk = tt.numinput('Choose an Approach',\
+                               'Ranging from 1-'+\
+                               str(len(final)),1,minval=1,\
+                               maxval=len(final))
             num = int(numk)
             draw(final[num-1])
 
