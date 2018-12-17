@@ -96,6 +96,7 @@ def draw_line1(x0, y0, x1, y1):
     """function to draw frame of the tile
     from coordinate(x0, y0) to (x1, y1)
     """
+    tt.speed(0)
     tt.pensize(5)
     tt.pencolor('black')
     tt.penup()
@@ -106,11 +107,11 @@ def draw_line1(x0, y0, x1, y1):
     tt.end_fill()
     tt.penup()
 
-
 def draw_line2(x0, y0, x1, y1):
     """function to draw frame of filling bricks
     from coordinate(x0, y0) to (x1, y1)
     """
+    tt.speed(0)
     tt.pensize(1)
     tt.pencolor('blue')
     tt.penup()
@@ -121,19 +122,17 @@ def draw_line2(x0, y0, x1, y1):
     tt.end_fill()
     tt.penup()
 
-
 def draw_num(number, x, y):
     """function to write down a corresponding number in the matrix
     adjust the size of number to make it easy to be seen
     """
-    import math
+    tt.speed(0)
     tt.penup()
     tt.pencolor('black')
     tt.goto(x, y)
     tt.pendown()
     tt.write(str(number),align="center",font=("Arial", size, "normal"))
     tt.penup()
-
 
 def get_ij(block_id):
     """function to build connection between block_id to corresponding number
@@ -143,15 +142,14 @@ def get_ij(block_id):
             if idx[i][j] == block_id:
                 return i, j
 
-
 def get_xy(block_id, width=50):
     """function to get the (x, y) to draw frame of bricks
     """
+    tt.speed(0)
     i, j = get_ij(block_id)
     x = (i + 1) * width
     y = (j - 1) * width
     return [x, x + width], [y, y + width]
-
 
 def draw(answer, width=50):
     """main function to draw a selected answer from final
