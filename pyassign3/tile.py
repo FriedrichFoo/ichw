@@ -237,7 +237,7 @@ def main():
             print('Follows are all solutions to fill: ')
             for i in range(len(final)):
                 print(final[i])
-            print('There are '+str(len(final))+'ways to fill')
+            print('There are '+str(len(final))+' ways to fill')
             numk = tt.numinput('Choose an Approach',\
                                'Ranging from 1-'+\
                                str(len(final)),1,minval=1,\
