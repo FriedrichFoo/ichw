@@ -10,8 +10,8 @@ __email__ = '1800011746@pku.edu.cn'
 import math
 ans = []
 final = []
-mstr = input('write down the lenth of the wall: ')
-nstr = input('write down the width of the wall: ')
+mstr = input('write down the lenth of the tile: ')
+nstr = input('write down the width of the tile: ')
 astr = input('write down one lenth of the brick: ')
 bstr = input('write down another lenth of the brick: ')
 
