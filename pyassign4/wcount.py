@@ -43,7 +43,7 @@ def wcount(lines,topn =10):
     sortlst = sorted(stalst, key=lambda kv:kv[1],reverse = True)
     
     # To give the answer
-    mat = "{:10}\t{:6}"
+    mat = "{:16}\t{:8}"
     if topn > len(sortlst):
         for num in range(len(sortlst)):
             print(mat.format(sortlst[num][0],sortlst[num][1]))
