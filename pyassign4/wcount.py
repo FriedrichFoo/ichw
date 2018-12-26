@@ -44,8 +44,12 @@ def wcount(lines,topn =10):
     
     # To give the answer
     mat = "{:10}\t{:6}"
-    for num in range(topn):
-        print(mat.format(sortlst[num][0],sortlst[num][1]))
+    if topn > len(sortlst):
+        for num in range(len(sortlst)):
+            print(mat.format(sortlst[num][0],sortlst[num][1]))
+    else:
+        for num in range(topn):
+            print(mat.format(sortlst[num][0],sortlst[num][1]))
 
 if __name__ == '__main__':
     if  len(sys.argv) == 1:
