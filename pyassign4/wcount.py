@@ -13,6 +13,7 @@ import functools
 from urllib.request import urlopen
 
 def wcount(lines,topn =10):
+    
     """count words from lines of text string, then sort by their counts
     in reverse order, output the topn (word count), each in one line. 
     """
@@ -25,7 +26,6 @@ def wcount(lines,topn =10):
     punclst = [i for i in string.punctuation]
     punclst.remove("'") 
     punclst.remove('-')  # Considering the logogram
-    punclst.append('--') # Considering -- as a dash
     for i in punclst:
         txtstr = txtstr.replace(i,' ')
     alst = txtstr.split()
@@ -53,24 +53,50 @@ def wcount(lines,topn =10):
 
 if __name__ == '__main__':
     if  len(sys.argv) == 1:
+        
         """ if there is no order, return these guide
         """
+        
         print('Usage: {} url [topn]'.format(sys.argv[0]))
         print('  url: URL of the txt file to analyze ')
-        print('  topn: how many (words count) to output. If not given, will output top 10 words')
+        print('  topn: how many (words count) to output.'+
+        'If not given, will output top 10 words')
         sys.exit(1)
     else:
-        # First, get the string from URL
-        doc = urlopen(sys.argv[1])
-        docstr = doc.read()
-        doc.close()
-        jstr = docstr.decode('UTF-8')
-        if len(sys.argv) == 2:
-            """ in this situation, give first 10 words
-            """
-            wcount(jstr)
+        
+        """ firstly, test the URL
+        """
+        
+        try:
+            doc = urlopen(sys.argv[1])
+        except Exception as er:
+            er = str(er)
+            if er == '<urlopen error [Errno 11001] getaddrinfo failed>':
+                print('No internet')
+            if er == 'HTTP Error 404: Not Found':
+                print("404: can't find the URL")
+            if 'unknown url type' in er:
+                print('wrong URL type')
         else:
+            
             """ in this situation, give the top n words
             where n is given by users
             """
-            wcount(jstr,int(sys.argv[2]))
+            
+            # First, get the string from URL
+            doc = urlopen(sys.argv[1])
+            docstr = doc.read()
+            doc.close()
+            jstr = docstr.decode('UTF-8')
+            if len(sys.argv) == 2:
+                
+                """ in this situation, give first 10 words
+                """
+                
+                wcount(jstr)
+            else:
+                
+                """ while in other situation, print the required words
+                """
+                
+                wcount(jstr,int(sys.argv[2]))
