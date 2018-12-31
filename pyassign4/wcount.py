@@ -7,96 +7,87 @@ __pkuid__  = "1800011746"
 __email__  = "1800011746@pku.edu.cn"
 """
 
-import sys
-import string
-import functools
+import sys, string, functools, urllib.error
 from urllib.request import urlopen
 
-def wcount(lines,topn =10):
-    
-    """count words from lines of text string, then sort by their counts
-    in reverse order, output the topn (word count), each in one line. 
+def record(aline):
+    """count words from one line of the whole and record them
+    considering Illustration punctuation and capitalization
+    Return: an updated dict
     """
+    # delect the Illustration
+    bodylst = aline.split('[Illustration]')  
+    linestr = functools.reduce(lambda x, y : x + y, bodylst) 
     
-    # To get the text
-    bodylst = lines.split('[Illustration]')  # To delect the Illustration
-    txtstr = functools.reduce(lambda x, y : x + y, bodylst) 
-    
-    # To handle punctuation & capitalization
+    # handle punctuation & capitalization
     punclst = [i for i in string.punctuation]
     punclst.remove("'") 
-    punclst.remove('-')  # Considering the logogram
+    punclst.remove('-')
     for i in punclst:
-        txtstr = txtstr.replace(i,' ')
-    alst = txtstr.split()
-    txtlst = [i.lower() for i in alst]  # Considering the capitalization
+        linestr = linestr.replace(i,' ')
+        alst = linestr.split()
+        txtlst = [i.lower() for i in alst]
+        # Considering the capitalization
     
-    # To get the word list without repetition
-    wordlst = []
-    for k in txtlst:
-        if k not in wordlst:
-            wordlst.append(k)
+    # record the words found and update worddict
+    for j in txtlst:
+        if j not in worddict:
+            worddict.update({j:1})
+        else:
+            worddict[j] += 1
     
-    # To get the frequency of each word and sort it
-    numlst = [txtlst.count(i) for i in wordlst]
-    stalst = list(zip(wordlst,numlst))
-    sortlst = sorted(stalst, key=lambda kv:kv[1],reverse = True)
-    
-    # To give the answer
-    mat = "{:16}\t{:8}"
-    if topn > len(sortlst):
-        for num in range(len(sortlst)):
-            print(mat.format(sortlst[num][0],sortlst[num][1]))
-    else:
-        for num in range(topn):
-            print(mat.format(sortlst[num][0],sortlst[num][1]))
 
+def wcount(lines, topn = 10):
+    """count words from lines of text string, 
+    then sort by their counts in reverse order, 
+    output the topn (word count), each in one line. 
+    """
+    global worddict
+    worddict = {}
+    # record words each line by each
+    linestr = lines.readline().decode() 
+    while linestr:
+        record(linestr)
+        linestr = lines.readline().decode()
+    
+    # sort the worddict to construct a wordlist
+    wordlist = sorted(worddict.items(),\
+                      key=lambda x:x[1],reverse = True)
+    
+    # get all words if lenth is less than number
+    print(' '*3+'Word'.ljust(30),'Times'.center(10))
+    for num in range(min(len(wordlist),topn)):
+        print(' '*3+wordlist[num][0].ljust(30),\
+              str(wordlist[num][1]).center(10))
+    
 if __name__ == '__main__':
-    if  len(sys.argv) == 1:
-        
-        """ if there is no order, return these guide
-        """
-        
+    if  len(sys.argv) == 1 or len(sys.argv) > 3:
         print('Usage: {} url [topn]'.format(sys.argv[0]))
         print('  url: URL of the txt file to analyze ')
         print('  topn: how many (words count) to output.'+
-        'If not given, will output top 10 words')
+              ' If not given, will output top 10 words')
         sys.exit(1)
     else:
-        
-        """ firstly, test the URL
-        """
-        
+        # first, test the URL
         try:
             doc = urlopen(sys.argv[1])
-        except Exception as er:
-            er = str(er)
-            if er == '<urlopen error [Errno 11001] getaddrinfo failed>':
-                print('No internet')
-            if er == 'HTTP Error 404: Not Found':
-                print("404: can't find the URL")
-            if 'unknown url type' in er:
-                print('wrong URL type')
-        else:
-            
-            """ in this situation, give the top n words
-            where n is given by users
-            """
-            
-            # First, get the string from URL
-            doc = urlopen(sys.argv[1])
-            docstr = doc.read()
-            doc.close()
-            jstr = docstr.decode('UTF-8')
-            if len(sys.argv) == 2:
-                
-                """ in this situation, give first 10 words
-                """
-                
-                wcount(jstr)
+        except urllib.error.URLError:
+            print(sys.exc_info()[1])
+        except urllib.error.HTTPError:
+            print(sys.exc_info()[1])
+        except ValueError:
+            print(sys.exc_info()[1])
+        
+        # then, test the number
+        else:  
+            try:
+                sys.argv[2].isdigit()
+            except IndexError:
+                wcount(doc)
             else:
-                
-                """ while in other situation, print the required words
-                """
-                
-                wcount(jstr,int(sys.argv[2]))
+                if not sys.argv[2].isdigit():
+                    print('Invalid number input.'+
+                          'Check and reinput number.')
+                    sys.exit(1)
+                else:
+                    wcount(doc, int(sys.argv[2]))
